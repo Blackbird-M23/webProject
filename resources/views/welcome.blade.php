@@ -5,8 +5,7 @@
 
 <div class="container">
     <div class="mt-5">
-        <h1>Welcome to the Home Page</h1>
-        
+        <h1>Welcome to the Home Page</h1>     
     </div>
     
 @endsection
