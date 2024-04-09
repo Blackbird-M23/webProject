@@ -1,0 +1,86 @@
+.headerSearch{
+    margin-left: 2rem;
+}
+
+.topNav{
+    margin-left: 7rem;
+}
+
+.navbar-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarTopUl {
+    margin-top: 0.8rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbarTopUl li{
+    font-size: large;
+    margin-left: 2rem;
+    display: inline;
+}
+
+.bottom-bar {
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content: space-around;
+}
+
+.bottom-bar{
+    direction: flex;
+}
+
+.bottom-bar-pic{
+    margin: 7px 7px 7px 14px;
+    width: 20%
+}
+
+#image{
+    border-radius: 20%;
+}
+.bottomNavDiv{
+    width: 80%;
+    opacity: 95%;
+}
+
+.navbar-bottom{
+    /* width: 95%; comment out if no new component addable */
+    border-radius: 10px; 
+    border: 1px; /* Example border style */
+    padding: 0.2rem; /* Example padding */
+    margin-top: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #ff9898; */
+}
+
+.navbar-bottom ul{
+    direction: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar-bottom ul li{
+    margin-left: 3rem;
+}
+
+
+.navbar-bottom .nav-link{
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar-bottom .nav-link:hover {
+    color: #2692ac; /* Color to transition to when hovering */
+}
+
+
