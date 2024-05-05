@@ -1,0 +1,31 @@
+footer {
+    width: 100%;
+    background-color: #f4e1d2;
+    color: #6b3e26;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10rem;
+}
+
+.footer-content h3 {
+    color: #d94f70;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-copyright{
+    margin-top: 3rem;
+    font-size: 13px;
+}
