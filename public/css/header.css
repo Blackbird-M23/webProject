@@ -1,36 +1,52 @@
 .headerSearch{
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
 .top-bar{
-    height: 3.2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  height: 3.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .topNav{
-    margin-left: 7rem;
+  margin-left: 7rem;
 }
 
 .navbar-top{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbarTopUl {
-    margin-top: 0.8rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: flex-end;
+  margin-top: 0.8rem;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .navbarTopUl li{
-    font-size: large;
-    margin-left: 2rem;
-    display: inline;
+  font-size: large;
+  margin-left: 2rem;
+  display: inline;
 }
+
+
+@media (max-width: 768px) {
+  .search-bar input[type="search"] {
+      width: 100%;
+  }
+
+  .navbar-top .nav-item {
+      margin-left: 10px;
+  }
+
+  .top-nav {
+      padding-top: 10px;
+  }
+}
+
 
 .bottom-bar {
     height:100%;
@@ -66,6 +82,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    /* height: 60px; */
     /* background-color: #ff9898; */
 }
 
@@ -90,3 +107,28 @@
 }
 
 
+/*css added for product page*/
+.product-dropdown-menu {
+  display: none; /* Initially hide the dropdown menu */
+  position: absolute;
+  /* background-color: #fff; */
+  background-color: rgb(133, 230, 252);
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+}
+
+.nav-item-dropdown:hover .product-dropdown-menu {
+  display: block; /* Show the dropdown menu when hovering over the parent li */
+}
+
+.product-dropdown-item {
+  color: #333;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.product-dropdown-item:hover {
+  background-color: #ffb134; /* Change background color on hover */
+}
