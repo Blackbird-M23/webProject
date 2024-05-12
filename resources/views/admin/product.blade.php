@@ -217,7 +217,9 @@
             </div>
         </div>
     @endforeach
-
+    <div style="margin-top: 2rem; margin-left:2rem; padding: 4px;">
+        {{ $products->links() }}
+    </div>
 @endsection
 
 @section('customJs')

@@ -1,8 +1,16 @@
 @extends('layout')
 @section('title', 'login')
 @section('content')
+<style>
+    .head
+    {
+        font-family: 'Poetsen One', cursive;
+        text-align: center;
+        margin-top: 3rem;
+    }
+</style>
     <div class = "container">
-
+        <h1 class="head">Log-in</h1>
         <div class="mt-5">
             @if($errors->any())
                 <div class="alert alert-danger">

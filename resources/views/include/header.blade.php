@@ -38,12 +38,20 @@
     <div class="col-md-4 col-sm-3 left mt-2 px-4 py-2 welcome-msg"> 
       <p>Sweet Tooth  | A top branded Sweet Shop</p>
     </div>
-    <div class="headerSearch mt-2 mr-1.5 me-5">
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+    <form class="search-form" action="/">
+      <div class="search-holder">
+        <div class="">
+          <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+      </div>
+        <input type="text" name="search" class="search-input"
+          placeholder="Search" />
+        <div class="button-container">
+          <button class="search-btn" type="submit">
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
     
   <div class="topNav mt-1 ml-1.5 px-10 ">
     <nav class="navbar-top">

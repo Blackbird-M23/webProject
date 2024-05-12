@@ -14,8 +14,8 @@ class Product extends Model
     public function scopefilter($query, array $filters)
     {
         if($filters['search'] ?? false){
-            $query->where('name', 'like', '%' . $request($search) . '%')
-                    ->orWhere('type', 'like', '%' . $request($search) . '%');
+            $query->where('name', 'like', '%' . request('search') . '%')
+                    ->orWhere('type', 'like', '%' . request('search') . '%');
                     // ->orWhere('description', 'like', '%' . $search . '%'
         }
     }

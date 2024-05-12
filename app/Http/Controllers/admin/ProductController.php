@@ -12,7 +12,7 @@ class ProductController extends Controller
     //admin all product
     public function index()
     {
-        $products = Product::all(); // Fetches all products from the database
+        $products = Product::latest()->paginate(8); // Fetches all products from the database
         return view('admin.product', compact('products'));
     }
 

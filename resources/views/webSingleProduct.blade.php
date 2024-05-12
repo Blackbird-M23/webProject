@@ -2,6 +2,21 @@
 
 @section('title', 'Product Details')
 @section('content')
+
+{{-- <form class="search-form" action="/">
+    <div class="search-holder">
+      <div class="">
+        <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+    </div>
+      <input type="text" name="search" class="search-input"
+        placeholder="Search" />
+      <div class="button-container">
+        <button class="search-btn" type="submit">
+          Search
+        </button>
+      </div>
+    </div>
+  </form> --}}
     <div class="single-product-container">
         <div class="single-product-details">
             <div class="product-image">
