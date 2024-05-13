@@ -4,10 +4,8 @@
 
 
 @section('content')
-@include('include.news')
 
 <style>
-
     hr {
     padding: 0;
     margin: 0 auto 10px; /* Center horizontally and add margin below */
@@ -89,7 +87,7 @@
     
 <div class="home-page-container">
     <div class="home-page">
-        <h1 class="hp-h1">Our Products</h1>
+        <h1 class="hp-h1">Snacks Items</h1>
         <hr>
         <br>
         <br>
@@ -99,7 +97,7 @@
                 <div class="product-box" style="margin: 10px; margin-bottom: 5rem; border: 1px solid #ccc; padding: 20px; flex-basis: 30%;">
                     <div class="product-img">
                         @if ($product->image)
-                        <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                         @else
                             <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
                         @endif

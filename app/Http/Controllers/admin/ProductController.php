@@ -33,13 +33,33 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.webSingleProduct', compact('product'));
+        return view('admin.SingleProduct', compact('product'));
     }
     //web single product show
     public function webshow($id)
     {
         $product = Product::findOrFail($id); // Fetches the product or fails with a 404
         return view('webSingleProduct', compact('product'));
+    }
+
+    //product category page
+    public function bakery()
+    {
+        
+        $products = Product::where('type', 'bakery')->latest()->paginate(3);
+        return view('products.bakery', compact('products'));
+    }
+
+    public function sweets()
+    {
+        $products = Product::where('type', 'sweets')->latest()->paginate(5);
+        return view('products.sweets', compact('products'));
+    }
+
+    public function snacks()
+    {
+        $products = Product::where('type', 'snacks')->latest()->paginate(5);
+        return view('products.snacks', compact('products'));
     }
 
     // CRUD
@@ -56,13 +76,13 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'type' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Create a new product record
-        $imagePath = null; // Initialize image path variable
+        // $imagePath = null; // Initialize image path variable
     if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('images', 'public');
+        $formfields['image'] = $request->file('image')->store('images', 'public');
     }
 
     // Create a new product record
@@ -71,7 +91,7 @@ class ProductController extends Controller
     $product->price = $request->price;
     $product->type = $request->type;
     $product->description = $request->description;
-    $product->image = $imagePath; // Store the file path if provided
+    $product->image = $request->image; // Store the file path if provided
     $product->save();
 
         // Redirect back with a success message

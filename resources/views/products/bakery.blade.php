@@ -1,13 +1,64 @@
+{{-- @extends('layout')
+@section('title', 'Bakery')
+@section('content')
+<style>
+    .product-container{
+        background: linear-gradient(to bottom, #6edefa, #f5ddff,  #ff6f9f);
+    }
+    .header{
+        text-align: center;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+    .product-container {
+        margin-bottom: 20px;
+    }
+    
+    .product-img{
+        margin-top: 1rem;
+        text-align: center;
+    }
+    .card-body{
+        text-align: center
+    }
+</style>
+<div class="product-container">
+    <h1 class="header">Bakery Items</h1>
+    <div class="row">
+        @foreach ($products as $product)
+            <div class="product-container col-md-4">
+                <div class="card">
+                    <div class="product-img">
+                        @if ($product->image)
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                        @else
+                            <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
+                        @endif
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                        <p class="card-text">৳{{ $product->price }}</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+<div style="margin-top: 2rem; margin-left:2rem; padding: 4px;">
+    {{ $products->links() }}
+</div>
+@endsection --}}
+
+
 @extends('layout')
 
 @section('title', 'Home Page')
 
 
 @section('content')
-@include('include.news')
 
 <style>
-
     hr {
     padding: 0;
     margin: 0 auto 10px; /* Center horizontally and add margin below */
@@ -89,7 +140,7 @@
     
 <div class="home-page-container">
     <div class="home-page">
-        <h1 class="hp-h1">Our Products</h1>
+        <h1 class="hp-h1">Bakery Items</h1>
         <hr>
         <br>
         <br>
@@ -99,7 +150,7 @@
                 <div class="product-box" style="margin: 10px; margin-bottom: 5rem; border: 1px solid #ccc; padding: 20px; flex-basis: 30%;">
                     <div class="product-img">
                         @if ($product->image)
-                        <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                         @else
                             <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
                         @endif

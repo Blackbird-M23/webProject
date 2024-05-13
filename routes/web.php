@@ -19,6 +19,12 @@ use App\Http\Controllers\admin\ProductController;
 Route::get('/', [ProductController::class, 'welcomeProducts'])->name('home');; // Route to show products on the welcome page
 Route::get('/product/{id}', [ProductController::class, 'webshow'])->name('product.show'); // Route to show individual product
 
+//product page
+Route::get('/products/bakery', [ProductController::class, 'bakery'] )->name('products.bakery');
+Route::get('/products/sweets', [ProductController::class, 'sweets'] )->name('products.sweets');
+Route::get('/products/snacks',[ProductController::class, 'snacks'] )->name('products.snacks');
+
+
 
 
 // Route::get('/admin/login', [adminLoginController::class, 'index'])->name('admin.login');

@@ -75,8 +75,8 @@
                 <label for="type">Type:</label>
                 <select id="type" name="type" required>
                     <option value="Bakery">Bakery</option>
-                    <option value="Cake">Cake</option>
-                    <option value="Snaks">Snaks</option>
+                    <option value="Sweets">Sweets</option>
+                    <option value="Snacks">Snacks</option>
                     {{-- <option value="Home & Garden">Home & Garden</option> --}}
                 </select>
             </div>

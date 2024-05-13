@@ -22,7 +22,7 @@ class ProductFactory extends Factory
      */
     public function definition()
 {
-    $types = ['bakery', 'cake', 'snacks'];
+    $types = ['bakery', 'sweets', 'snacks'];
     
     return [
         'name' => $this->faker->word,

@@ -101,9 +101,9 @@
                     <h4>Products</h4>
                   </a>
                   <div class="product-dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="product-dropdown-item" href="#">Bakery</a>
-                    <a class="product-dropdown-item" href="#">Sweets</a>
-                    <a class="product-dropdown-item" href="#">Snacks</a>
+                    <a class="product-dropdown-item" href="{{route('products.bakery')}}">Bakery</a>
+                    <a class="product-dropdown-item" href="{{route('products.sweets')}}">Sweets</a>
+                    <a class="product-dropdown-item" href="{{route('products.snacks')}}">Snacks</a>
                   </div>
                 </li>
               {{-- </li> --}}
