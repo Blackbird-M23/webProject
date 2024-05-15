@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use  Illuminate\Http\Request;
 use App\Http\Controllers\admin\ProductController;
-
-
+use App\Http\Controllers\NewsController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -74,6 +73,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('products/update/{id}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('products/delete/{id}', [ProductController::class, 'destroy'])->name('products.delete');
+
+    //news list route
+    Route::get('/news', [NewsController::class, 'admin_index'])->name('news.all');
+    // Route to show individual news details
+    Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+    //news CRUD route
+    Route::get('admin/news/addNews', [NewsController::class, 'create'])->name('news.create');
+    Route::post('admin/news/storeNews', [NewsController::class, 'store'])->name('news.store');
+    Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('news/update/{id}', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('news/delete/{id}', [NewsController::class, 'destroy'])->name('news.delete');
+
     });
 
 });

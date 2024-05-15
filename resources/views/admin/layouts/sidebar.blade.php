@@ -48,10 +48,10 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/admin/news" class="nav-link">
                         <!-- <i class="nav-icon fas fa-tag"></i> -->
                         <i class="fas fa-truck nav-icon"></i>
-                        <p>Shipping</p>
+                        <p>News</p>
                     </a>
                 </li>							
                 <li class="nav-item">
