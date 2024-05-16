@@ -149,11 +149,12 @@
             @foreach($products as $product)
                 <div class="product-box" style="margin: 10px; margin-bottom: 5rem; border: 1px solid #ccc; padding: 20px; flex-basis: 30%;">
                     <div class="product-img">
-                        @if ($product->image)
+                        <img src="{{$product->image ? asset('storage/' . $product->image) : asset('/images/temppic.jpeg')}}" alt="Product_Image" height="150px" width="200px">
+                        {{-- @if ($product->image)
                         <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                         @else
                             <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
-                        @endif
+                        @endif --}}
                     </div>
                     {{-- <h3>{{ $product->name }}</h3> --}}
                     <div class="product-details" style=" margin-top: 7px;">

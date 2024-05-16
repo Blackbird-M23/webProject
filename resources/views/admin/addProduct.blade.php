@@ -51,13 +51,13 @@
         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="logo" class="inline-block text-lg mb-2">
+                <label for="image" class="inline-block text-lg mb-2">
                     Product Image
                 </label>
                 <input
                 type="file"
                 class="border border-gray-200 rounded p-2 w-full"
-                name="logo"
+                name="image"
                 />
                 {{-- <input type="file" class="border border-gray-200 rounded p-2 w-full" id="logo" name="logo" onchange="previewImage(event)">
                 <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;"> --}}

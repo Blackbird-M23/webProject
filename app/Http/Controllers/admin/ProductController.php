@@ -6,6 +6,7 @@ use App\Models\News;
 use App\Models\Product; 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,7 @@ class ProductController extends Controller
     {
         // $products = Product::all(); 
         //$products = Product::paginate(5); // Paginate products with 10 products per page
-        $products = Product::latest()->filter(request(['search']))->paginate(5);
+        $products = Product::latest()->filter(request(['search']))->paginate(9);
         $news = News::all(); // Fetch all news from the database
         //dd($news); // Dump and die
         return view('welcome', [
@@ -69,34 +70,29 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validate the incoming request data
-        $formfields = $request->validate([
-           'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'type' => 'required|string|max:255',
-            'description' => 'required|string',
-            // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    // Validate the incoming request data
+    $formfields = $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'type' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        // Create a new product record
-        // $imagePath = null; // Initialize image path variable
+    // Handle image upload
     if ($request->hasFile('image')) {
         $formfields['image'] = $request->file('image')->store('images', 'public');
+        // $formfields['image'] = basename($formfields['image']); // Store only the filename
     }
-
+    // dd($formfields) ; 
     // Create a new product record
-    $product = new Product();
-    $product->name = $request->name;
-    $product->price = $request->price;
-    $product->type = $request->type;
-    $product->description = $request->description;
-    $product->image = $request->image; // Store the file path if provided
-    $product->save();
+    Product::create($formfields);
 
-        // Redirect back with a success message
-        return redirect()->route('products.create')->with('success', 'Product added successfully!');
-    }
+    // Redirect back with a success message
+    return redirect()->route('products.create')->with('success', 'Product added successfully!');
+}
+
 
     public function edit($id)
 {
@@ -105,35 +101,80 @@ class ProductController extends Controller
 }
 
 
-    public function update(Request $request, $id)
+//     public function update(Request $request, $id)
+// {
+//     $product = Product::findOrFail($id);  // Fetches the product or fails with a 404 error
+
+//     // Validate the incoming request data
+//     $formfields = $request->validate([
+//         'name' => 'required|string|max:255',
+//         'price' => 'required|numeric|min:0',
+//         'type' => 'required|string|max:255',
+//         'description' => 'required|string',
+//         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+//     ]);
+
+//     // Update the product record
+//     // if ($request->hasFile('image')) {
+//     //     $product->image = $request->file('image')->store('images', 'public');
+//     // } elseif ($request->filled('remove_image')) {
+//     //     // Handle case where user wants to remove image
+//     //     $product->image = null; // Set image path to null
+//     // }
+
+//     if ($request->hasFile('image')) {
+//         $formfields['image'] = $request->file('image')->store('images', 'public');
+//     }
+
+//     $product->name = $request->name;
+//     $product->price = $request->price;
+//     $product->type = $request->type;
+//     $product->description = $request->description;
+//     $product->save();
+
+
+//     return redirect()->route('products.show', ['id' => $id]);
+
+// }
+public function update(Request $request, $id)
 {
     $product = Product::findOrFail($id);  // Fetches the product or fails with a 404 error
 
     // Validate the incoming request data
-    $request->validate([
+    $formfields = $request->validate([
         'name' => 'required|string|max:255',
         'price' => 'required|numeric|min:0',
         'type' => 'required|string|max:255',
         'description' => 'required|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'remove_image' => 'nullable|boolean', // To handle image removal
     ]);
 
-    // Update the product record
+    // Handle image upload
     if ($request->hasFile('image')) {
-        $product->image = $request->file('image')->store('images', 'public');
-    } elseif ($request->filled('remove_image')) {
-        // Handle case where user wants to remove image
-        $product->image = null; // Set image path to null
+        // Delete the old image if it exists
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+        // Store the new image
+        $formfields['image'] = $request->file('image')->store('images', 'public');
+    } elseif ($request->input('remove_image') == '1') {
+        // Handle image removal
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+        $formfields['image'] = null; // Set image path to null
+    } else {
+        // Keep the existing image
+        $formfields['image'] = $product->image;
     }
-    $product->name = $request->name;
-    $product->price = $request->price;
-    $product->type = $request->type;
-    $product->description = $request->description;
-    $product->save();
 
-    return redirect()->route('products.show', ['id' => $id]);
+    // Update the product record
+    $product->update($formfields);
 
+    return redirect()->route('products.show', ['id' => $id])->with('success', 'Product updated successfully!');
 }
+
 
 public function destroy($id)
 {

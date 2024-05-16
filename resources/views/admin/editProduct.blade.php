@@ -126,34 +126,51 @@
 </style>
 
 <div class="form-container">
-    <form action="{{ route('products.update', $product->id) }}" method="POST">
+    
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
-        <label for="logo" class="inline-block text-lg mb-2">
-            Company Logo
-        </label>
-        <input
-            type="file"
-            class="border border-gray-200 rounded p-2 w-full"
-            name="logo"
-            value="{{$product->image}}"
-        />
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="{{ $product->name }}" required>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" value="{{ $product->price }}" required>
-
-        <label for="type">Type:</label>
-        <input type="text" id="type" name="type" value="{{ $product->type }}" required>
-
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required>{{ $product->description }}</textarea>
-
+    
+        <div class="form-group">
+            <label for="image" class="inline-block text-lg mb-2">
+                Product Image
+            </label>
+            @if ($product->image)
+                <div>
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" style="max-width: 100px;">
+                    <label>
+                        <input type="checkbox" name="remove_image" value="1">
+                        Remove Image
+                    </label>
+                </div>
+            @endif
+            <input type="file" class="border border-gray-200 rounded p-2 w-full" name="image">
+        </div>
+    
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ $product->name }}" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" value="{{ $product->price }}" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" value="{{ $product->type }}" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required>{{ $product->description }}</textarea>
+        </div>
+    
         <button type="submit" class="btn btn-info">Update Product</button>
-        {{-- <button class="btn btn-info" type="button" onclick="location.href='{{ route('products.update', $product->id) }}'">Update</button> --}}
+        <button type="button" class="btn btn-secondary" onclick="window.location='{{ route('products.show', $product->id) }}'">Back</button>
     </form>
+    
 </div>
 @endsection
 

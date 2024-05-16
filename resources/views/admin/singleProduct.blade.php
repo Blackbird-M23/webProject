@@ -115,11 +115,12 @@
     <div class="product-details">
         <div class="product-image">
             {{-- <img src="{{ $product->image_url }}" alt="Product Image"> --}}
-            @if ($product->image)
+            {{-- @if ($product->image)
                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                 @else
                     <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
-                @endif
+                @endif --}}
+                <img src="{{$product->image ? asset('storage/' . $product->image) : asset('/images/temppic.jpeg')}}" alt="Product_Image">
         </div>
         <div class="product-info">
             <h1>{{ $product->name }}</h1>
@@ -136,6 +137,8 @@
         <button class="btn btn-info" type="button" onclick="location.href='{{ route('products.edit', $product->id) }}'">Update Product</button>
        
         <button class="btn btn-danger" type="button" onclick="confirmDelete()">Delete Product</button>
+
+        <button type="button" class="btn btn-secondary" onclick="window.location='{{ route('products.all', $product->id) }}'">Back</button>
 
         <form id="delete-product-form" action="{{ route('products.delete', $product->id) }}" method="POST" style="display: none;">
             @csrf
