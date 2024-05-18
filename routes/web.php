@@ -22,6 +22,8 @@ Route::get('/product/{id}', [ProductController::class, 'webshow'])->name('produc
 Route::get('/products/bakery', [ProductController::class, 'bakery'] )->name('products.bakery');
 Route::get('/products/sweets', [ProductController::class, 'sweets'] )->name('products.sweets');
 Route::get('/products/snacks',[ProductController::class, 'snacks'] )->name('products.snacks');
+Route::post('/addToCart', [ProductController::class, 'addToCart']);
+Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
 
 
 

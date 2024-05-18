@@ -6,6 +6,7 @@ use App\Models\News;
 use App\Models\Product; 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 
 class ProductController extends Controller
 {
@@ -41,6 +42,50 @@ class ProductController extends Controller
         $product = Product::findOrFail($id); // Fetches the product or fails with a 404
         return view('webSingleProduct', compact('product'));
     }
+
+    public function addToCart(Request $data)
+    {
+        // Validate the incoming request data
+        $data->validate([
+            'quantity' => 'required|integer|min:1|max:5',
+            'id' => 'required|integer|exists:products,id',
+        ]);
+    
+        // Debugging: Print the validated values
+        // dd($data->all());
+        
+        if (auth()->id()) {
+            // Retrieve validated data
+            $quantity = $data->input('quantity');
+            $productId = $data->input('id');
+            $customerId = auth()->id();
+    
+            // Debugging: Print the values
+            // dd(compact('quantity', 'productId', 'customerId'));
+    
+            // Create a new Cart item
+            $item = new Cart();
+            $item->quantity = $quantity;
+            $item->productId = $productId;
+            $item->customerId = $customerId;
+            $item->save();
+    
+            // Debugging: Print the saved item
+            dd($item);
+    
+            return redirect()->back()->with('success', 'Congratulations! Item added into cart.');
+        } else {
+            return redirect('login')->with('error', 'Please Log in to add to your cart.');
+        }
+    }
+    
+
+    // public function showCart(Request $request){
+    //     dd($request->all());
+    //     return view('cart');
+    // }
+
+
 
     //product category page
     public function bakery()

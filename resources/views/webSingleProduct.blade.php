@@ -32,12 +32,18 @@
                 <h4 style="color: orange">Price: ৳{{ number_format($product->price, 2) }}</h4>
                 <p><strong>Type: </strong> {{ $product->type }}</p>
                 <p><strong>Description:</strong> {{ $product->description }}</p>
-                <div class="quantity-input">
+                
+                <form action="{{URL::to('addToCart')}}" method="POST">
+                  @csrf
+                  <div class="quantity-input">
                     <div class="quantity">
-                        <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                        <input type="number" step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
                     </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
+                    <input type="hidden" name="id" value="{{$product->id}}">
+                    <button type="submit" name="addToCart" class="add-to-cart-btn">Add to Cart</button>
+                  </div>
+                </form>
+                
                 
             </div>
         </div>
