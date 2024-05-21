@@ -1,6 +1,10 @@
+
+
 @extends('admin.layouts.app')
 
 @section('content')
+
+
 <style>
     /* General Layout Adjustments */
     body, html {
@@ -105,40 +109,77 @@
     }
     .border {
     border: 1px solid #e5e7eb; /* Border color */
-}
+    }
 
-.border-gray-200 {
-    border-color: #e5e7eb; /* Border color */
-}
+    .border-gray-200 {
+        border-color: #e5e7eb; /* Border color */
+    }
 
-.rounded {
-    border-radius: 0.375rem; /* Border radius */
-}
+    .rounded {
+        border-radius: 0.375rem; /* Border radius */
+    }
 
-.p-2 {
-    padding: 0.5rem; /* Padding */
-}
+    .p-2 {
+        padding: 0.5rem; /* Padding */
+    }
 
-.w-full {
-    width: 100%; /* Full width */
-}
+    .w-full {
+        width: 100%; /* Full width */
+    }
+    .image-preview {
+        margin-bottom: 20px; /* Space below the image preview */
+    }
+
+    .image-preview img {
+        width: 50%; /* Full width of its container */
+        max-width: 150px; /* Maximum width to control image size */
+        border-radius: 8px; /* Rounded corners */
+    }
+    
+    .button{
+        margin-top: 2rem;
+    }
+    .checkbox-group{
+        width: 20%;
+        display: flex;
+        justify-content: space-evenly;
+    }
 
 </style>
 
+
 <div class="form-container">
-    <form action="{{ route('products.update', $product->id) }}" method="POST">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <label for="logo" class="inline-block text-lg mb-2">
-            Company Logo
+        <div class="image-preview">
+            <img src="{{ $product->image ? asset('products/' . $product->image) : asset('images/temppic.jpeg') }}" alt="Product Image">
+        </div>
+
+        <!-- Checkbox to remove the image -->
+        <div class="checkbox-group" >
+            <input type="checkbox" id="remove_image" name="remove_image" class="mb-2">
+            <label for="remove_image" class="inline-block text-lg">
+                Remove Image
+            </label>
+        </div>
+
+        <!-- File input to select a new image -->
+        <div>
+            <label for="image" class="inline-block text-lg mb-2">Select New Image</label>
+            <input type="file" id="image" name="image" class="border border-gray-200 rounded p-2 w-full" accept="image/*">
+        </div>
+
+        {{-- <label for="logo" class="inline-block text-lg mb-2">
+            Image
         </label>
         <input
             type="file"
             class="border border-gray-200 rounded p-2 w-full"
-            name="logo"
+            name="image"
             value="{{$product->image}}"
-        />
+        /> --}}
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="{{ $product->name }}" required>
 
@@ -152,6 +193,7 @@
         <textarea id="description" name="description" required>{{ $product->description }}</textarea>
 
         <button type="submit" class="btn btn-info">Update Product</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location='{{ route('products.show', $product->id) }}'">Back</button>
         {{-- <button class="btn btn-info" type="button" onclick="location.href='{{ route('products.update', $product->id) }}'">Update</button> --}}
     </form>
 </div>

@@ -33,7 +33,7 @@
                 <p><strong>Type: </strong> {{ $product->type }}</p>
                 <p><strong>Description:</strong> {{ $product->description }}</p>
                 
-                <form action="{{URL::to('addToCart')}}" method="POST">
+                <form action="{{route('addToCart')}}" method="POST">
                   @csrf
                   <div class="quantity-input">
                     <div class="quantity">

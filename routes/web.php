@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\admin\adminLoginController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\AuthManager;
 use App\Models\Product;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use  Illuminate\Http\Request;
-use App\Http\Controllers\admin\ProductController;
+use Illuminate\Http\Request;
+use App\Http\Controllers\AuthManager;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ProductControllert;
+use App\Http\Controllers\admin\adminLoginController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,7 +23,9 @@ Route::get('/product/{id}', [ProductController::class, 'webshow'])->name('produc
 Route::get('/products/bakery', [ProductController::class, 'bakery'] )->name('products.bakery');
 Route::get('/products/sweets', [ProductController::class, 'sweets'] )->name('products.sweets');
 Route::get('/products/snacks',[ProductController::class, 'snacks'] )->name('products.snacks');
-Route::post('/addToCart', [ProductController::class, 'addToCart']);
+
+//cart routes
+Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToCart');
 Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
 
 

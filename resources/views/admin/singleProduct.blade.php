@@ -115,11 +115,7 @@
     <div class="product-details">
         <div class="product-image">
             {{-- <img src="{{ $product->image_url }}" alt="Product Image"> --}}
-            @if ($product->image)
-                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-                @else
-                    <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
-                @endif
+            <img src="{{ $product->image ? asset('products/' . $product->image) : asset('images/temppic.jpeg') }}" alt="Product Image">
         </div>
         <div class="product-info">
             <h1>{{ $product->name }}</h1>
