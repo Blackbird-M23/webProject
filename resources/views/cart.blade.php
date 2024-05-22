@@ -52,7 +52,7 @@ h2{
 /* Style for the sidebar */
 .cart-total {
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #65dbff;
     border: 1px solid #ced4da;
     border-radius: 5px;
 }
@@ -95,6 +95,12 @@ h2{
 <div class="row shopping-cart">
     <div class="col-md-8">
         <h2>Shopping Cart</h2>
+        @if(Session::has('success'))
+            <div class="alert alert-success alert-dismissible">
+                <h5><i class="icon fa fa-check"></i> Success!</h5>
+                {{Session::get('success')}}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -119,16 +125,29 @@ h2{
                         </div>
                     </td>
                     <td style="display: flex; flex-direction:column; text-align:center;">
-                        <div>
-                            <input style="margin-left: 10rem; margin-top:1rem; margin-bottom: 1rem;" type="number" class="form-control" value="{{ $product->quantity }}" min="1" max="10">
-                        </div>
-                        <div class="inside-of-quantity">
-                            <button class="btn btn-primary btn-update">Update</button>
-                            <a href="#" class="btn-delete"><i class="fas fa-trash-alt"></i></a>
-                        </div>
+                        <form action="{{route('updateCartItem', $product->id)}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{$product->id}}">
                         
+                            <div>
+                                <input 
+                                style="margin-left: 5rem; margin-top:1rem; margin-bottom: 1rem;" 
+                                type="number" 
+                                class="form-control" 
+                                name="quantity" 
+                                value="{{ $product->quantity }}"  
+                                min="1" 
+                                max="5" 
+                                required>
+                            </div>
+                            <div class="inside-of-quantity">
+                                <button type="submit" class="btn btn-primary btn-update">Update</button>
+                                <a href="{{route('deleteCartItem', $product->id) }}" class="btn-delete"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </form>
                     </td>
-                    <td>
+                    <td style="text-align: center; vertical-align: middle;">
                         ৳ {{number_format( $var = $product->price * $product->quantity, 2) }}
                         @php $totalPrice += $var; @endphp
                     </td>

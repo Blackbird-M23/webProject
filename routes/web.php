@@ -24,10 +24,6 @@ Route::get('/products/bakery', [ProductController::class, 'bakery'] )->name('pro
 Route::get('/products/sweets', [ProductController::class, 'sweets'] )->name('products.sweets');
 Route::get('/products/snacks',[ProductController::class, 'snacks'] )->name('products.snacks');
 
-//cart routes
-Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToCart');
-Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
-
 
 
 
@@ -94,7 +90,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
-
+//cart routes & CRUD
+Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
+Route::get('/deleteCartItem/{id}', [ProductController::class, 'deleteCartItem'])->name('deleteCartItem');
+Route::put('/updateCartItem/{id}', [ProductController::class, 'updateCartItem'])->name('updateCartItem');
 
 Route::get('/login', [AuthManager::class, 'login']) -> name('login');
 Route::post('/login', [AuthManager::class, 'loginPost']) -> name('login.post');

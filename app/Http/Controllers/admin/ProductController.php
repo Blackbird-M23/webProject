@@ -227,5 +227,24 @@ public function showCart(Request $request){
     return view('cart', compact('cartItems'));
 }
 
+public function updateCartItem(Request $request, $id){
+
+    $request->validate([
+        'quantity' => 'required|integer|min:1|max:5'
+    ]);
+    
+    $cartItem = Cart::findOrFail($id);
+    $cartItem->quantity = $request->input('quantity');
+    $cartItem->save();
+    return redirect()->back()->with('success', 'Item Updated in cart.');
+}
+
+
+public function deleteCartItem($id){
+    $cartItem = Cart::findOrFail($id);
+    $cartItem->delete();
+    // dd($cartItems);
+    return redirect()->back()->with('success', 'Item removed from cart.');
+}
 
 }
