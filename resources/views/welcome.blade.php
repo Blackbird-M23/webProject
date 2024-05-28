@@ -78,6 +78,31 @@
         color: rgb(255, 187, 0);
     }
 
+    .btn-all {
+    background-color: #ffffff; /* Example color for Bakery */
+    color: rgb(0, 0, 0);
+    }
+
+    .btn-bakery {
+    background-color: #77d8f0; /* Example color for Bakery */
+    color: white;
+    }
+
+    .btn-sweets {
+        background-color: #f59494; /* Example color for Sweets */
+        color: white;
+    }
+
+    .btn-snacks {
+        background-color: #4caf50; /* Example color for Snacks */
+        color: white;
+    }
+
+    .btn-active {
+        border: 2px solid #000; /* Example for active button */
+    }
+
+
 
     
     @media (max-width: 768px) {
@@ -94,15 +119,20 @@
         <br>
         <br>
         <br>
+        <div class="filter-buttons" style="text-align: center; margin: 20px 0;">
+            <button id="btn-all" onclick="filterProducts('all')" class="btn btn-secondary">Show All</button>
+            <button id="btn-bakery" onclick="filterProducts('Bakery')" class="btn btn-secondary">Bakery</button>
+            <button id="btn-sweets" onclick="filterProducts('Sweets')" class="btn btn-secondary">Sweets</button>
+            <button id="btn-snacks" onclick="filterProducts('Snacks')" class="btn btn-secondary">Snacks</button>
+        </div>
+        
+        <br>
+        <br>
         <div class="products-container" style="display: flex; flex-wrap: wrap; margin-left: 5rem;">
             @foreach($products as $product)
-                <div class="product-box" style="margin: 10px; margin-bottom: 5rem; border: 1px solid #ccc; padding: 20px; flex-basis: 30%;">
+                <div class="product-box" data-type="{{ $product->type }}" style="margin: 10px; margin-bottom: 5rem; border: 1px solid #ccc; padding: 20px; flex-basis: 30%;">
                     <div class="product-img">
-                        @if ($product->image)
-                        <img src="{{ asset('storage/'. $product->image) }}" alt="{{ $product->name }}">
-                        @else
-                            <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
-                        @endif
+                        <img class="image-holder" src="{{ $product->image ? asset('products/' . $product->image) : asset('images/temppic.jpeg') }}" alt="Product Image">
                     </div>
                     {{-- <h3>{{ $product->name }}</h3> --}}
                     <div class="product-details" style=" margin-top: 7px;">
@@ -112,7 +142,7 @@
                         
                         <p>Price : ৳ {{ $product->price}} </p>
                         {{-- <p>{{ $product->description }}</p> --}}
-                        <a class="cart" href="#" class="btn btn-primary">Add to Cart</a>
+                        <a class="cart" href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Add to Cart</a>
                     </div>
                    
                 </div>
@@ -123,4 +153,5 @@
         {{ $products->links() }}
     </div>
 </div>
+<script src="{{ asset('java.js') }}"></script>
 @endsection

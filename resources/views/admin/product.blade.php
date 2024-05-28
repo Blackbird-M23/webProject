@@ -202,16 +202,8 @@
 
     @foreach ($products as $product)
         <div class="product-details">
-            <div class="product-image">
-                <img src="{{$product->image ? asset('storage/' . $product->image) : asset('/images/temppic.jpeg')}}" alt="Product_Image">
-                {{-- @if ($product->image)
-                <img src="{{'storage/app/public/' . $product->image }}" alt="{{ $product->name }}">
-                <p>{{ asset('storage/app/public/' . $product->image) }}</p> <!-- Debug: Check constructed URL -->
-                @else
-                    <img src="{{ asset('images/temppic.jpeg') }}" alt="{{ $product->name }}">
-                @endif --}}
-            </div>
             {{-- <div class="product-image">
+                {{-- <img src="{{asset('images/temppic.jpeg') }}" alt="{{ $product->name }}"> 
                 @if ($product->image)
                 <img src="{{ asset('storage/app/public/' . $product->image) }}" alt="Product_Image">
                 @else
@@ -219,6 +211,9 @@
                 @endif
             </div> --}}
             
+            <div class="product-image">
+                <img src="{{ $product->image ? asset('products/' . $product->image) : asset('images/temppic.jpeg') }}" alt="Product Image">
+            </div>
             <div class="product-info">
                 <h2><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h2>
                 <p>Price: ৳{{ number_format($product->price, 2) }}</p>

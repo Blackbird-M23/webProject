@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\admin\adminLoginController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\AuthManager;
 use App\Models\Product;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use  Illuminate\Http\Request;
-use App\Http\Controllers\admin\ProductController;
+use Illuminate\Http\Request;
+use App\Http\Controllers\AuthManager;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ProductControllert;
+use App\Http\Controllers\admin\adminLoginController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -89,7 +90,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
-
+//cart routes & CRUD
+Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
+Route::get('/deleteCartItem/{id}', [ProductController::class, 'deleteCartItem'])->name('deleteCartItem');
+Route::put('/updateCartItem/{id}', [ProductController::class, 'updateCartItem'])->name('updateCartItem');
 
 Route::get('/login', [AuthManager::class, 'login']) -> name('login');
 Route::post('/login', [AuthManager::class, 'loginPost']) -> name('login.post');

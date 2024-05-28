@@ -72,6 +72,9 @@
           <div style="margin-left: 5px">
             @auth
             {{auth()->user()->name}}
+            <a href="{{ route('showCart') }}">
+              <i class="fas fa-shopping-cart" ></i>
+            </a>
             @endauth
           </div>
           

@@ -59,8 +59,8 @@
                 class="border border-gray-200 rounded p-2 w-full"
                 name="image"
                 />
-                {{-- <input type="file" class="border border-gray-200 rounded p-2 w-full" id="logo" name="logo" onchange="previewImage(event)">
-                <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;"> --}}
+                 <!-- <input type="file" class="border border-gray-200 rounded p-2 w-full" id="logo" name="logo" onchange="previewImage(event)">
+                <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;">  -->
               
             </div>
             <div class="form-group">
@@ -96,23 +96,5 @@
 @section('customJs')
     <script>
         console.log('Add Product Page');
-        // function previewImage(event) {
-        //     var input = event.target;
-        //     var imagePreview = document.getElementById('imagePreview');
-            
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-
-        //         reader.onload = function(e) {
-        //             imagePreview.src = e.target.result;
-        //             imagePreview.style.display = 'block';
-        //         }
-
-        //         reader.readAsDataURL(input.files[0]); // Convert the selected file to a data URL
-        //     } else {
-        //         imagePreview.src = '#'; // Clear the image source
-        //         imagePreview.style.display = 'none';
-        //     }
-        // }
     </script>
 @endsection
