@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Product;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 class ProductFactory extends Factory
@@ -22,7 +22,7 @@ class ProductFactory extends Factory
      */
     public function definition()
 {
-    $types = ['bakery', 'sweets', 'snacks'];
+    $types = ['Bakery', 'Sweets', 'Snacks'];
     
     return [
         'name' => $this->faker->word,

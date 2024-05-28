@@ -142,7 +142,7 @@
                         
                         <p>Price : ৳ {{ $product->price}} </p>
                         {{-- <p>{{ $product->description }}</p> --}}
-                        <a class="cart" href="#" class="btn btn-primary">Add to Cart</a>
+                        <a class="cart" href="{{ route('product.show', $product->id) }}" class="btn btn-primary">Add to Cart</a>
                     </div>
                    
                 </div>

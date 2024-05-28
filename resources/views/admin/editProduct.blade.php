@@ -186,8 +186,28 @@
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" value="{{ $product->price }}" required>
 
-        <label for="type">Type:</label>
+        {{-- <label for="type">Type:</label>
         <input type="text" id="type" name="type" value="{{ $product->type }}" required>
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="Bakery">Bakery</option>
+                <option value="Sweets">Sweets</option>
+                <option value="Snacks">Snacks</option>
+                {{-- <option value="Home & Garden">Home & Garden</option> 
+            </select>
+        </div> --}}
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="Bakery" {{ $product->type == 'Bakery' ? 'selected' : '' }}>Bakery</option>
+                <option value="Sweets" {{ $product->type == 'Sweets' ? 'selected' : '' }}>Sweets</option>
+                <option value="Snacks" {{ $product->type == 'Snacks' ? 'selected' : '' }}>Snacks</option>
+                <!-- The Home & Garden option is commented out as indicated -->
+                {{-- <option value="Home & Garden" {{ $product->type == 'Home & Garden' ? 'selected' : '' }}>Home & Garden</option> --}}
+            </select>
+        </div>
+        
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" required>{{ $product->description }}</textarea>
