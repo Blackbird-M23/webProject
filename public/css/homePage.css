@@ -1,0 +1,8 @@
+.home-page-container{
+    background: linear-gradient(to bottom, #6edefa, #f5ddff,  #ff6f9f);
+}
+
+.hp-h1{
+    text-align: center;
+    margin-top: 3rem;
+}

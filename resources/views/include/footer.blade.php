@@ -1,4 +1,5 @@
-<footer>
+<link rel="stylesheet" type="text/css" href="css/footer.css" />
+<footer id="contact">
     <div class="footer-content">
         <h3>Contact Info</h3>
         <p>Address: 123 Candy Lane, Sweetstown, SS 12345</p>

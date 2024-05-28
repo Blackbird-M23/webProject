@@ -13,6 +13,10 @@ class adminLoginController extends Controller
     public function index(){
         return view('admin.login');
     } 
+    /*
+    $user->name = 'admin'
+    $user->email = 'admin@gmail.com'
+    */
 
     public function authenticate(Request $request){
         $validator = Validator::make($request->all(), [

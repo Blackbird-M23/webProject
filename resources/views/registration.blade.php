@@ -1,7 +1,17 @@
 @extends('layout')
 @section('title', 'registration')
 @section('content')
+<style>
+    .head
+    {
+        font-family: 'Poetsen One', cursive;
+        text-align: center;
+        margin-top: 3rem;
+    }
+</style>
+
     <div class = "container">
+      <h1 class="head">Registration</h1>
         <div class="mt-5">
             @if($errors->any())
                 <div class="alert alert-danger">
@@ -22,7 +32,7 @@
                     {{session('success')}}
                 @endif
         </div>
-        <form action="{{route('registration.post')}}" method="POST" class ="ms-auto me-auto mt-3" style="width:500px">
+        <form action="{{route('registration.post')}}" method="POST" class ="ms-auto me-auto mt-3" style="width:500px; margin-bottom : 5rem">
             @csrf
             <div class="mb-3">
               <label class="form-label">Name</label>
