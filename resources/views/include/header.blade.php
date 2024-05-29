@@ -126,7 +126,7 @@
             <a class="nav-link active" aria-current="page" href="{{route('home')}}"><h4>Event</h4></a>
           </li>
           <li class="nav-item" style="color: white">
-            <a class="nav-link active" aria-current="page" href="{{route('home')}}"><h4>Gallery</h4></a>
+            <a class="nav-link active" aria-current="page" href="{{route('recipes.index')}}"><h4>Recipes</h4></a>
           </li>
           <li class="nav-item" style="color: white">
             <a class="nav-link active" aria-current="page" href="#contact"><h4>Contact</h4></a>

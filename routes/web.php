@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AuthManager;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CategoryController;
@@ -95,6 +96,13 @@ Route::post('/addToCart', [ProductController::class, 'addToCart'])->name('addToC
 Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
 Route::get('/deleteCartItem/{id}', [ProductController::class, 'deleteCartItem'])->name('deleteCartItem');
 Route::put('/updateCartItem/{id}', [ProductController::class, 'updateCartItem'])->name('updateCartItem');
+
+
+//recipe routes
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
+Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
+Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
+
 
 Route::get('/login', [AuthManager::class, 'login']) -> name('login');
 Route::post('/login', [AuthManager::class, 'loginPost']) -> name('login.post');
