@@ -9,5 +9,6 @@ admin panel was added separately from the website so adminn has to know the rout
 
 ## how to access the admin panel 
 - use the route /admin/login
+- email : admin@gmail.com
 - pass : admin
 - go to products to use the CRUD operations.
